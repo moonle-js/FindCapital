@@ -9,6 +9,9 @@ var section  = document.querySelector('#section'),
             userSubmit = document.querySelector('#userSubmit'),
             resultOfUser = document.querySelector('#resultOfUser');
 
+         //canlarin sayisini artirmaq istesem burdan sadece deyeri deyisdirecem ve her sey avtomatik deyisilecek
+         var qalanCan = 3;
+
         //urekleri elave edirem sehifeye
         function addHearts(e){
             var hearts = [];
@@ -19,8 +22,16 @@ var section  = document.querySelector('#section'),
             console.log(message)
             trys.innerHTML = message.join('');
         }
-        //canlarin sayisini artirmaq istesem burdan sadece deyeri deyisdirecem ve her sey avtomatik deyisilecek
-        var qalanCan = 3;
+
+        function createRefresh(){
+            resultOfUser.innerHTML = `<button id='refreshButton' class = "refresh_button" >Refresh</button>`
+            var refreshButton = document.querySelector('#refreshButton');
+
+            refreshButton.addEventListener('click', function(){
+                window.location.reload();
+            })
+        }
+       
         //cavabi yoxlamaq ucun yaradilan funskiya
         function testAnswer(answer, real){
             if(answer.toLowerCase() == real.toLowerCase()){
@@ -29,6 +40,7 @@ var section  = document.querySelector('#section'),
                 userSubmit.style.display = "none";
                 setTimeout(function(){
                     resultOfUser.innerHTML = "Refresh for new game";
+                    createRefresh();
                 },4000)
                 return true;
             }else{
@@ -41,7 +53,8 @@ var section  = document.querySelector('#section'),
         }
         var dogrusu = ""; // Bu cariable ona gore yaratdim ki sonra buna fetchden gelen deyeri menimsedib islede bilim
 
-        redy_btn.addEventListener('click', function(){
+
+        function createGame(){
             addHearts(qalanCan);
             redy_btn.style.display = 'none';
             var countries = ['russia', 'peru', 'argentina', 'azerbaijan', 'mexico', 'japan', 'turkey', 'spain', 'sudan', 'mali', 'syria'];
@@ -66,8 +79,12 @@ var section  = document.querySelector('#section'),
                     userSubmit.style.display = "none";
                     setTimeout(function(){
                         resultOfUser.innerHTML = "Refresh for new game";
+                        createRefresh();
                     },2000)
                 }
             })
                 
-        })
+        }
+
+
+        redy_btn.addEventListener('click', createGame)

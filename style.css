@@ -120,6 +120,21 @@ body{
             main footer div{
                 height: 30%;
             }
+            .refresh_button{
+                width: 150px;
+                height: 30px;
+                background-color: #C67C4E;
+                color: #ddd;
+                cursor: pointer;
+                border-radius: 15px;
+                border: 2px solid #ddd;
+            }
+            #resultOfUser{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-around;
+            }
 
 /* A little bit responsibility */
 @media screen and (max-width:600px){
